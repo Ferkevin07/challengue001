@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,37 +29,7 @@ public class Service003Application {
 
 }
 
-interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
-}
-
-@RestController
-@RequestMapping("cuentas")
-class TestController {
-
-	private final CuentaRepository cuentaRepository;
-
-	@Autowired
-			private EntityManager entityManager;
-
-	TestController(CuentaRepository cuentaRepository) {
-		this.cuentaRepository = cuentaRepository;
-	}
-
-	@GetMapping
-	public List<Cuenta> test() {
-		return cuentaRepository.findAll();
-	}
-
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Cuenta crearCuenta(@RequestBody CuentaRequest cuentaRequest) {
-		Cuenta cuenta = new Cuenta(cuentaRequest.getNumero_cuenta(),cuentaRequest.getTipo(),cuentaRequest.getSaldo_inicial(),cuentaRequest.getEstado(), cuentaRequest.getCliente_id());
-		//cuentaRepository.save(cuenta);
-		cuentaRepository.save(cuenta);
-
-		return cuenta;
-	}
 
 //	@PostMapping
 //	@Transactional
@@ -74,7 +46,7 @@ class TestController {
 //
 //		return newCount;
 //	}
-}
+
 
 //EXCEPTIONS
 

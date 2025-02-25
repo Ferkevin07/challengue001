@@ -16,5 +16,5 @@ public class CuentaRequest {
     private String tipo;
     private Double saldo_inicial;
     private Boolean estado;
-    private String cliente_id;
+    private Long cliente_id;
 }

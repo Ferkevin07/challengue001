@@ -14,7 +14,6 @@ public class MovimientoException extends RuntimeException {
     }
 }
 
-
 @RestControllerAdvice
 class GlobalExceptionHandler {
 
@@ -22,6 +21,14 @@ class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> manejarMovimientoException(MovimientoException ex) {
         Map<String, Object> error = new HashMap<>();
         error.put("error", "Movimiento no válido");
+        error.put("mensaje", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(RequestException.class)
+    public ResponseEntity<Map<String, Object>> manejarRequestException(RequestException ex) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("error", "Formato no valido");
         error.put("mensaje", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }

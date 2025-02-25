@@ -22,9 +22,9 @@ public class Cuenta {
     @Column
     private Boolean estado;
     @Column
-    private String cliente_id;
+    private Long cliente_id;
 
-    public Cuenta(String numero_cuenta, String tipo, Double saldo_inicial, Boolean estado, String cliente_id) {
+    public Cuenta(String numero_cuenta, String tipo, Double saldo_inicial, Boolean estado, Long cliente_id) {
         //this.cuenta_id = cuenta_id;
         this.numero_cuenta = numero_cuenta;
         this.tipo = tipo;

@@ -40,6 +40,14 @@ public class ClienteController {
                         .body(Collections.singletonMap("error", "Cliente no encontrado")));
     }
 
+    @GetMapping("/cuentas-cliente/{id}")
+    public ResponseEntity<Map<String, String>> obtenerCuentasCliente(@PathVariable Long id) {
+        return clienteRepository.findById(id)
+                .map(cliente -> ResponseEntity.ok(Collections.singletonMap("nombre", cliente.getNombre())))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("error", "Cliente no encontrado")));
+    }
+
 //    @GetMapping("/conseguir/{id}")
 //    @ResponseStatus(HttpStatus.OK)
 //    public String conseguirClienteNombre(@PathVariable Long id) {

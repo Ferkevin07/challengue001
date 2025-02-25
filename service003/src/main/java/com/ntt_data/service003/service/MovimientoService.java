@@ -2,12 +2,16 @@ package com.ntt_data.service003.service;
 
 import com.ntt_data.service003.model.Movimiento;
 import com.ntt_data.service003.model.MovimientoRequest;
+import com.ntt_data.service003.model.dto.ReporteMovimientoDTO;
 import com.ntt_data.service003.repository.MovimientoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +22,8 @@ import java.util.Optional;
 public class MovimientoService {
 
     private final MovimientoRepository movimientoRepository;
+
+    private RestTemplate restTemplate;
 
     MovimientoService(MovimientoRepository movimientoRepository) {
         this.movimientoRepository = movimientoRepository;
